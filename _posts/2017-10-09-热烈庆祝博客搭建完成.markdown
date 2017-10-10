@@ -1,0 +1,17 @@
+---
+layout: post
+title: 热烈庆祝博客搭建完成
+date:  2017-10-09
+description:  卖萌日卖个萌
+img:  huaji.gif
+tags: [Hello World]
+author:  Taylor Toby # Add name author (optional)
+---
+
+##喜迎十九大
+##卖萌日卖个萌
+##顺便庆祝博客搭起来了
+##以后还希望各位大佬指点
+
+最后，我妞镇楼
+![妞妞]({{site.baseurl}}/assets/img/niu.jpg)

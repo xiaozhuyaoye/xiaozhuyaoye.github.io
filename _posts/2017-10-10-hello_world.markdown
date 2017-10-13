@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 热烈庆祝博客搭建完成
-date:  2017-10-09
+date:  2017-10-10
 description:  卖萌日卖个萌
 img:  huaji.gif
 tags: [Hello World]

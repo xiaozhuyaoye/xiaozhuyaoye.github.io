@@ -106,3 +106,5 @@ int results = this.getJdbcTemplate().batchUpdate(sql,new BatchPreparedStatementS
 		}
 	})
 ```
+
+通过以上的代码就能将读取到的数据批量的合并到表中

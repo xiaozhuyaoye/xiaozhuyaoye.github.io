@@ -56,7 +56,7 @@ public class MachineTest {
 
 参考代码在part1/AutoWired路径中  https://github.com/xiaozhuyaoye/SpringInActionDemos
 
-# 二.Spring中Bean的手动装配--通过JavaConfig
+# 二. Spring中Bean的手动装配--通过JavaConfig
 
 &emsp;现在基于第一部分的代码进行改造，分为两个部分：删除，新增。
 
@@ -104,7 +104,100 @@ public class Config {
 
 &emsp;上面的三种方法达到的效果是一样的，可以从Part1/RigOutByJava路径下找到代码测试 https://github.com/xiaozhuyaoye/SpringInActionDemos
 
+# 三. Spring中Bean的手动装配--通过XML
 
-# 三.Spring中Bean的手动装配--通过XML
+&emsp;这个部分同样先删除再添加来达到通过XML声明装配规则的目的。
 
-# 四.混合导入
+&emsp;首先，删除Java配置类，其他的不需要做变更。之前通过配置类来说明装配的规则，删除掉之后我们就来创建XML文件来表明这个规则。
+
+```
+<bean id="washingMachine" class="entity.WashingMachine" />
+
+<!--<bean id="xiaoMing" class="entity.XiaoMing">
+    <constructor-arg name="machine" ref="washingMachine" />
+</bean>-->
+
+<!--<bean id="xiaoMing" class="entity.XiaoMing">
+    <constructor-arg index="0" ref="washingMachine" />
+</bean>-->
+
+<!-- <bean id="xiaoMing" class="entity.XiaoMing">
+    <property name="washingMachine" ref="washingMachine" />
+</bean>-->
+
+<!--<bean id="xiaoMing" class="entity.XiaoMing">
+    <property name="washingMachine" ref="washingMachine" />
+    <property name="str" value="Hello World" />
+    <property name="list">
+        <list>
+            <value>"a"</value>
+        </list>
+    </property>
+    <property name="map">
+        <map>
+            <entry key="b" value="b" />
+            <entry key="c" value="c"/>
+        </map>
+    </property>
+    <property name="set">
+        <set>
+            <value>"d"</value>
+            <value>"e"</value>
+            <value>"f"</value>
+        </set>
+    </property>
+    <property name="properties">
+        <props>
+            <prop key="g">"g"</prop>
+            <prop key="h">"h"</prop>
+            <prop key="i">"i"</prop>
+            <prop key="j">"j"</prop>
+        </props>
+    </property>
+</bean>-->
+```
+&emsp;还是先从没有任何依赖的WashingMachine类来声明，我们这里指定了id和class属性，id是bean的唯一标识，创建出来的bean的名称也是id，class指明了类所在的路径。
+
+&emsp;接下来我们声明XiaoMing，有三种方式，第一种通过含参构造器注入。同样是指定id跟class属性，接着使用<constructor-arg>标签，name属性，表明构造器参数的名称，ref属性，它的值指向了名称为这个值的Bean，Spring会寻找这个Bean并将其作为创建XiaoMing时的参数。
+
+&emsp;第二种方式跟第一种是类似的，第一种方式中使用的是参数的名称，第二种是使用构造器参数的顺序作为参数，使用index属性。这两种方式各有优缺点，比如修改了参数名称但是参数顺序没有变更的情况下，第一种方式就出错了，参数顺序变化的情况下第二种方式也会出问题。
+
+&emsp;第三种方式我们使用属性注入，使用<property>标签，其中的name参数表示属性的名称，ref属性表明引用的Bean的名字。
+
+&emsp;最后一个是在属性注入中，分别在<property>注入对象，字符串，List，Map，Set，Properties的方法。在构造器中注入这些参数的写法也是一样的，这里用属性注入为例子。
+
+可以在可以从Part1/RigOutByXML路径下找到代码测试 https://github.com/xiaozhuyaoye/SpringInActionDemos
+
+# 四. 混合配置
+
+## 4.1 在JavaConfig中引入XML配置
+
+&emsp;我们计划在XML中声明Machine的实例，然后在JavaConfig中引入XML的配置。JavaConfig中的代码如下所示，使用@ImportResource注解。
+
+```
+@Configuration
+@ImportResource("classpath:ImportXMLToJavaConfig.xml")
+public class ImportXMLToJavaConfig {
+    @Bean
+    public XiaoMing xiaoMing(WashingMachine washingMachine){
+        return new XiaoMing(washingMachine);
+    }
+}
+```
+
+## 4.2 在XML中引入JavaConfig配置
+
+&emsp;我们在JavaConfig中声明Machine的实例，然后在XML中引入JavaConfig的配置。XML中的代码如下所示，直接在<bean>标签中声明一个Bean，class属性中指定JavaConfig的路径就可以了
+
+```
+@Configuration
+@ImportResource("classpath:ImportXMLToJavaConfig.xml")
+public class ImportXMLToJavaConfig {
+    @Bean
+    public XiaoMing xiaoMing(WashingMachine washingMachine){
+        return new XiaoMing(washingMachine);
+    }
+}
+```
+
+参考代码在part1/MixedConfig路径中  https://github.com/xiaozhuyaoye/SpringInActionDemos

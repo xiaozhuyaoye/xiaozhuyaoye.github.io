@@ -13,7 +13,7 @@ Java 虚拟机在执行 Java 程序的时候，会把管理的内存划分为不
 
 根据《Java 虚拟机规范（Java SE 7 版）》的规定，Java 虚拟机管理的内存区域包含以下几个部分，如图所示。
 
-![](G:\xiaozhuyaoye.github.io\assets\img\20191204\640.jpg)
+![](../assets/img/20191204/640.jpg)
 
 
 

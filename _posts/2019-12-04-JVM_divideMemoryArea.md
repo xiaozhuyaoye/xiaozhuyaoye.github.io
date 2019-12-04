@@ -1,3 +1,14 @@
+---
+layout: post
+title: JVM 中内存区域的划分以及每个区域可能产生的异常
+date:  2019-12-4
+img:  /20191204/0.jpg
+tags: [Java Virtual Machine]
+author:  Taylor Toby
+---
+
+
+
 Java 虚拟机在执行 Java 程序的时候，会把管理的内存划分为不同的数据区域。每个区域有不同的用途和生命周期。
 
 根据《Java 虚拟机规范（Java SE 7 版）》的规定，Java 虚拟机管理的内存区域包含以下几个部分，如图所示。

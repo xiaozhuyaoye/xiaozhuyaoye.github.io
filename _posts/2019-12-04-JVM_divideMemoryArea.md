@@ -17,12 +17,6 @@ Java 虚拟机在执行 Java 程序的时候，会把管理的内存划分为不
 
 
 
-Java 虚拟机在执行 Java 程序的时候，会把管理的内存划分为不同的数据区域。每个区域有不同的用途和生命周期。
-
-根据《Java 虚拟机规范（Java SE 7 版）》的规定，Java 虚拟机管理的内存区域包含以下几个部分，如图所示。
-
-![img](https://mmbiz.qpic.cn/mmbiz_jpg/SY791BChZiaBiaghEp0gTLO6fsib2YiceNzBmeoJcbSsUVR8DRKpNOts14TEICsutAu594IvFwaGAgWYFAskiaZVOsQ/640?wx_fmt=jpeg)img
-
 ### 程序计数器 
 
 - 是什么

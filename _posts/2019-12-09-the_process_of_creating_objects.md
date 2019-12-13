@@ -1,6 +1,6 @@
 ---
 layout: post
-title: HotSpot 虚拟机在 Java 堆中对象分配、布局和访问的过程
+title: HotSpot 虚拟机创建对象的过程
 date:  2019-12-9
 img:  /20191204/0.jpg
 tags: [Java Virtual Machine]
@@ -24,7 +24,7 @@ author:  Taylor Toby
 5. 最后，执行 init 方法，把对象按照程序员的意愿进行初始化，这样一个真正可用的对象就产生了。
 
 
-###### 内存如何划分
+#### 内存如何划分
 
 
 在为对象分配内存时，需要将一个确定大小的内存从 Java 堆中划分出来。堆内存可能是规整的，也可能是不规整的。
@@ -37,7 +37,7 @@ author:  Taylor Toby
 
 
 
-###### 内存划分时的并发问题
+#### 内存划分时的并发问题
 
 
 
@@ -48,13 +48,14 @@ author:  Taylor Toby
 2. 事先给每个线程划分一块内存区域，称为本地线程分配缓冲（Thread Local Allocation Buffer，TLAB），每个线程的内存分配都在这块区域内进行，只有在 TLAB 使用完需要分配新的内存的时候才需要进行同步。虚拟机是否使用 TLAB 可以通过参数 -XX:+/-UseTLAB 控制
 ---
 
+
 ### 对象在内存中的布局
 
 在 HotSpot 虚拟机中，对象的存储布局可以分为 3 部分：对象头（Header）、实例数据（Instance Data）和对齐填充（Padding）。
 
 
 
-###### 对象头包含哪些信息
+#### 对象头包含哪些信息
 
 
 
@@ -96,7 +97,7 @@ Mark World 其实是对象自身在运行时期的数据，比如哈希码、GC 
 
 如果使用句柄来访问对象，那么会在 Java 堆中划分出一块内存作为句柄池，reference 对象中存储的就是对象句柄的地址，句柄中包含了对象的实例数据地址和类型数据的地址。示例图如下
 
-![](G:\xiaozhuyaoye.github.io\assets\img\20191209\0.png)
+![](../assets/img/20191209/0.png)
 
 
 
@@ -106,7 +107,7 @@ Mark World 其实是对象自身在运行时期的数据，比如哈希码、GC 
 
 如果使用直接地址来访问对象，那么堆中的对象就需要存储对象类型数据的地址，如下图所示
 
-![](G:\xiaozhuyaoye.github.io\assets\img\20191209\1.png)
+![](../assets/img/20191209/1.png)
 
 
 

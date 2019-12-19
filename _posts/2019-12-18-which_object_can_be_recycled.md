@@ -2,7 +2,7 @@
 layout: post
 title: 如何确定哪些对象可以回收？
 date:  2019-12-18
-img:  /20191218/0.jpg
+img:  /20191218/0.png
 tags: [Java Virtual Machine]
 author:  Taylor Toby
 ---
